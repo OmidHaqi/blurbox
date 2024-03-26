@@ -1,6 +1,6 @@
 # BlurBox
 <img src="assets/intro.png" alt="screenshots">
-# Introduction
+## Introduction
 
 ### A widget that applies a blur effect to its child widget.<br/>
 
