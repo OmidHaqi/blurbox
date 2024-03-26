@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
               surface: const Color(0xff19191B),
               onSurface: const Color(0xffffffff),
               seedColor: const Color(0xff19191B)),
-          scaffoldBackgroundColor: Color(0xff19191B)),
+          scaffoldBackgroundColor: const Color(0xff19191B)),
       home: ExampleOne(
         title: 'BlurBox Example',
       ),
@@ -98,8 +98,8 @@ class ExampleOne extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => ExampleTwo()),
                 );
               },
-              icon: Icon(Icons.arrow_back_ios_rounded),
-              label: Text('Go to ExampleTwo'),
+              icon: const Icon(Icons.arrow_back_ios_rounded),
+              label: const Text('Go to ExampleTwo'),
             ),
           ),
         ],
@@ -128,11 +128,11 @@ class ExampleTwo extends StatelessWidget {
             ),
           ),
         ),
-        BlurBox(
+        const BlurBox(
           width: double.infinity,
           height: double.infinity,
           blur: 5.0,
-          child: const Center(
+          child: Center(
             child: Text(
               'Blur Backgruond!',
               style: TextStyle(fontSize: 24.0),
