@@ -18,11 +18,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - uses: subosito/flutter-action@v2  # Installs Flutter
+        with:
+          channel: 'stable'  # Or 'beta', 'master'
+
+      - uses: actions/setup-java@v3  # Optional: If your project uses Java
+        with:
+          distribution: 'temurin'
+          java-version: '15'  # Or your preferred version
+
+      - name: Set Flutter path   # Add environment variable
+        run: echo "::add-path::$HOME/.flutter/bin"
 
       - name: Install dependencies
         run: flutter pub get
 
       - name: Analyze project source
         run: dart analyze
-
