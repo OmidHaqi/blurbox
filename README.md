@@ -1,5 +1,5 @@
 # BlurBox
-<img src="assets/intro.png" alt="screenshots">
+<img src="https://i.ibb.co/TMGr2yY/intro.png" alt="screenshots">
 
 # Introduction
 
