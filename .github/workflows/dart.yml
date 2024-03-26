@@ -27,11 +27,15 @@ jobs:
           distribution: 'temurin'
           java-version: '17'  # Or your preferred version
 
-      - name: Create environment file
-        run: echo "PATH=$PATH:$HOME/.flutter/bin" >> $GITHUB_ENV/flutter_path
+      - name: Create temporary environment file  # Using temporary file approach
+        run: |
+          tempfile=$(mktemp)
+          echo "PATH=$PATH:$HOME/.flutter/bin" >> "$tempfile"
+          echo "::set-env name=FLUTTER_PATH::$(cat $tempfile)"
+        shell: bash  # Use bash for portability
 
-      - name: Load environment file
-        run: source $GITHUB_ENV/flutter_path
+      - name: Clean up temporary file (optional)
+        run: rm -f "$tempfile"  # Remove the temporary file after use (optional)
 
       - name: Install dependencies
         run: flutter pub get
