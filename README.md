@@ -1,5 +1,5 @@
 # BlurBox
-<img src="https://i.ibb.co/TMGr2yY/intro.png" alt="screenshots">
+<img src="https://i.ibb.co/khywY1t/intro.png" alt="screenshots">
 
 # Introduction
 
@@ -13,7 +13,7 @@ with the difference that this container is BlurBox
 
 ```yaml
 dependencies:
-  blurbox: 0.0.1
+  blurbox: 0.0.2
 ```
 
 ```dart
@@ -28,7 +28,7 @@ You can customize the blur amount, color, elevation, padding, and various other 
 ```dart
 BlurBox(
 blur: 5.0, // Adjust the blur amount
-color: Colors.white.withOpacity(0.1), // Set a semi-transparent background
+color: Colors.white.withOpacity(0.1), // Set a transparent background
   child: Text('This text is blurred!'),
 )
 ```
