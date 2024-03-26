@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
-import 'package:blurbox/blur_box.dart';
+import 'package:blurbox/blurbox.dart';
 import 'package:flutter/material.dart';
 
 void main() {
