@@ -13,7 +13,7 @@ with the difference that this container is BlurBox
 
 ```yaml
 dependencies:
-  blurbox: 0.0.2
+  blurbox: 0.0.3
 ```
 
 ```dart

@@ -54,10 +54,9 @@ class ExampleOne extends StatelessWidget {
             child: BlurBox(
               width: 200,
               height: 150,
-
+              blur: 5.0,
               borderRadius: BorderRadius.circular(40),
               border: Border.all(color: const Color(0xff4d4d4d)),
-              blur: 5.0, // Adjust blur amount
               child: const Center(
                 child: Text(
                   'BlurBox!',
@@ -69,6 +68,7 @@ class ExampleOne extends StatelessWidget {
           Positioned(
             left: 20,
             top: 175,
+            //You can use all the properties provided by the container here
             child: BlurBox(
               width: 200,
               height: 150,
@@ -134,7 +134,7 @@ class ExampleTwo extends StatelessWidget {
           blur: 5.0,
           child: Center(
             child: Text(
-              'Blur Backgruond!',
+              'Blur Background!',
               style: TextStyle(fontSize: 24.0),
             ),
           ),
