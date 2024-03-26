@@ -27,8 +27,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'  # Or your preferred version
 
-      - name: Set Flutter path   # Add environment variable
-        run: echo "::add-path::$HOME/.flutter/bin"
+      - name: Create environment file
+        run: echo "PATH=$PATH:$HOME/.flutter/bin" >> $GITHUB_ENV/flutter_path
+
+      - name: Load environment file
+        run: source $GITHUB_ENV/flutter_path
 
       - name: Install dependencies
         run: flutter pub get
