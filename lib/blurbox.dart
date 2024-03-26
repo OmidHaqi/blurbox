@@ -96,7 +96,6 @@ class BlurBox extends StatelessWidget {
     this.image,
     this.shape,
   }) : assert(blur >= 0, 'The blur value must be non-negative.');
-  
 
   @override
   Widget build(BuildContext context) {
