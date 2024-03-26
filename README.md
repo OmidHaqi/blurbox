@@ -62,7 +62,7 @@ child: const Center(
 
 **Explore the various properties of `BlurBox` to customize its appearance and behavior:**
 
-* `key`:The key of the widget.
+* `keyy`:The key of the widget.
 * `blur`: Controls the blur intensity (`default`: `5.0`).
 * `color`: Sets the background color of the BlurBox (`default`: `transparent`).
 * `height` and width: Define the size of the BlurBox.
