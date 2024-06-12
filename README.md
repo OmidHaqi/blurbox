@@ -15,6 +15,10 @@ with the difference that this container is BlurBox
 dependencies:
   blurbox: 0.0.3
 ```
+or 
+```zsh
+flutter pub add blurbox
+```
 
 ```dart
 import 'package:bluebox/blur_box.dart';
