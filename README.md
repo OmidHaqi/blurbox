@@ -1,12 +1,15 @@
 # BlurBox
-<img src="https://i.ibb.co/khywY1t/intro.png" alt="screenshots">
+<img src="screenshots/intro.png" alt="screenshots">
 
 # Introduction
 
 ### A widget that applies a blur effect to its child widget.<br/>
 
-It works like the Container widget and gives you all the features that the container has,<br/>
+It works like the Container widget and gives you all the features that the container has,
 with the difference that this container is BlurBox
+
+
+
 
 
 # Installation
@@ -16,7 +19,7 @@ dependencies:
   blurbox: 0.0.3
 ```
 or 
-```zsh
+```bash
 flutter pub add blurbox
 ```
 
@@ -26,8 +29,10 @@ import 'package:bluebox/blur_box.dart';
 
 # Usage
 
-The `BlurBox` widget takes a child widget and applies a blur effect to it.<br/>
+The `BlurBox` widget takes a child widget and applies a blur effect to it.
 You can customize the blur amount, color, elevation, padding, and various other styling options.
+
+
 
 ```dart
 BlurBox(
@@ -44,11 +49,22 @@ height:double.infinity,
 blur: 5.0, 
 child: const Center(
   child: Text(
-    'Blur Backgruond!',
+    'Blur Background!',
      style: TextStyle(fontSize: 24.0),
     ),
   ),
 ),
+```
+
+> [!IMPORTANT]
+> When you use blur in a scrollable view and have a problem with rendering, write the physics of your scroll view in the following way to solve your problem.
+
+```dart
+ ListView(
+          physics: const AlwaysScrollableScrollPhysics()
+                    .applyTo(const BouncingScrollPhysics()),
+          children: [...]
+ )
 ```
 
 # Features
