@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors_in_immutables
-
 import 'package:blurbox/blurbox.dart';
 import 'package:flutter/material.dart';
 
@@ -16,12 +14,13 @@ class MyApp extends StatelessWidget {
       title: 'BlurBox Example',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-              surface: const Color(0xff19191B),
-              onSurface: const Color(0xffffffff),
-              seedColor: const Color(0xff19191B)),
-          scaffoldBackgroundColor: const Color(0xff19191B)),
-      home: ExampleOne(
+        colorScheme: ColorScheme.fromSeed(
+            surface: const Color(0xff19191B),
+            onSurface: const Color(0xffffffff),
+            seedColor: const Color(0xff19191B)),
+        scaffoldBackgroundColor: const Color(0xff19191B),
+      ),
+      home: const ExampleOne(
         title: 'BlurBox Example',
       ),
     );
@@ -30,33 +29,41 @@ class MyApp extends StatelessWidget {
 
 class ExampleOne extends StatelessWidget {
   final String title;
-  ExampleOne({super.key, required this.title});
+  const ExampleOne({
+    super.key,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('BlurBox Example'),
+        title: const Text(
+          'BlurBox Example',
+        ),
       ),
       body: Stack(
         children: [
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/test.png'),
+                image: AssetImage(
+                  'assets/images/test.png',
+                ),
               ),
             ),
           ),
           Positioned(
             right: 20,
             bottom: 250,
-            child: BlurBox(
+            child: PresetBlurBox(
               width: 200,
               height: 150,
-              blur: 5.0,
               borderRadius: BorderRadius.circular(40),
-              border: Border.all(color: const Color(0xff4d4d4d)),
+              border: Border.all(
+                color: const Color(0xff4d4d4d),
+              ),
               child: const Center(
                 child: Text(
                   'BlurBox!',
@@ -74,10 +81,15 @@ class ExampleOne extends StatelessWidget {
               height: 150,
               color: Colors.white,
               borderRadius: BorderRadius.circular(40),
-              border: Border.all(color: const Color(0xff4d4d4d)),
+              border: Border.all(
+                color: const Color(0xff4d4d4d),
+              ),
               blur: 10, // Adjust blur amount
               gradient: const LinearGradient(
-                colors: [Color(0x30FBA91C), Color(0x20E05688)],
+                colors: [
+                  Color(0x30FBA91C),
+                  Color(0x20E05688),
+                ],
               ),
               child: const Center(
                 child: Text(
@@ -95,7 +107,9 @@ class ExampleOne extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ExampleTwo()),
+                  MaterialPageRoute(
+                    builder: (context) => const ExampleTwo(),
+                  ),
                 );
               },
               icon: const Icon(Icons.arrow_back_ios_rounded),
@@ -109,7 +123,7 @@ class ExampleOne extends StatelessWidget {
 }
 
 class ExampleTwo extends StatelessWidget {
-  ExampleTwo({
+  const ExampleTwo({
     super.key,
   });
 
@@ -128,16 +142,13 @@ class ExampleTwo extends StatelessWidget {
             ),
           ),
         ),
-        const BlurBox(
-          width: double.infinity,
-          height: double.infinity,
-          blur: 5.0,
+        const AnimatedBlurBox(
+          duration: Duration(milliseconds: 1000),
           child: Center(
-            child: Text(
-              'Blur Background!',
-              style: TextStyle(fontSize: 24.0),
-            ),
-          ),
+              child: Text(
+            'Blur Background!',
+            style: TextStyle(fontSize: 24.0),
+          )),
         ),
       ]),
     );

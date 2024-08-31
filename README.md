@@ -9,14 +9,11 @@ It works like the Container widget and gives you all the features that the conta
 with the difference that this container is BlurBox
 
 
-
-
-
 # Installation
 
 ```yaml
 dependencies:
-  blurbox: 0.0.3
+  blurbox: 0.0.4
 ```
 or 
 ```bash
@@ -24,7 +21,7 @@ flutter pub add blurbox
 ```
 
 ```dart
-import 'package:bluebox/blur_box.dart';
+import 'package:blurbox/blurbox.dart';
 ```
 
 # Usage
@@ -32,7 +29,7 @@ import 'package:bluebox/blur_box.dart';
 The `BlurBox` widget takes a child widget and applies a blur effect to it.
 You can customize the blur amount, color, elevation, padding, and various other styling options.
 
-
+### BlurBox
 
 ```dart
 BlurBox(
@@ -56,27 +53,85 @@ child: const Center(
 ),
 ```
 
+### PresetBlurBox !
+```dart
+PresetBlurBox(
+preset: BlurPreset.heavy,
+child: Center(
+       child: Text(
+              'Heavy Blur',
+              style: TextStyle(fontSize: 24, color: Colors.white),
+              ),
+      ),
+)
+```
+### AnimatedBlurBox 
+```dart
+AnimatedBlurBox(
+duration: Duration(seconds: 1),
+curve: Curves.easeInOut,
+borderRadius: BorderRadius.circular(20),
+child:Center(
+      child: Text(
+              'Blur Me!',
+             ),
+      ),
+)
+```
+### ThemedBlurBox
+```dart
+ThemedBlurBox(
+  child: Text('blur by surface color in the theme'),
+)
+```
+### .blurry ext
+
+```dart
+Text('BlurBox').blurry(
+          blur: 10,
+          color: Colors.blue.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(15),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        ),
+```
+
+
+
+### Available Widgets
+
+## BlurBox
+The core widget that applies a blur effect to its child.
+
+## AnimatedBlurBox
+A widget that provides animated transitions when changing blur values.
+
+## ThemedBlurBox
+Automatically adapts the blur box's colors to match the current app theme.
+
+## PresetBlurBox
+Offers predefined blur styles (`soft`, `heavy`, `subtleShadow`) for quick and easy use.
+
+
+
+
 > [!IMPORTANT]
 > When you use blur in a scrollable view and have a problem with rendering, write the physics of your scroll view in the following way to solve your problem.
 
 ```dart
- ListView(
-          physics: const AlwaysScrollableScrollPhysics()
-                    .applyTo(const BouncingScrollPhysics()),
-          children: [...]
- )
+ListView(
+physics: const AlwaysScrollableScrollPhysics()
+               .applyTo(const BouncingScrollPhysics()
+               ),
+children: [...]
+)
 ```
 
 # Features
 
-* Blur effect with customizable sigma value
-* Optional background color
-* Border radius control
-* Padding and margin for child widget
-* Alignment control for child widget
-* Clip behavior options
-* Support for various decorations (border, gradient, image)
-* And more!
+- **BlurBox:** The main widget for applying blur effects with extensive customization options.
+- **AnimatedBlurBox:** Provides smooth animations for changing blur values.
+- **ThemedBlurBox:** Automatically adjusts blur and colors based on the current theme of the application.
+- **PresetBlurBox:** Offers predefined blur configurations for quick setup.
 
 # Customization
 
