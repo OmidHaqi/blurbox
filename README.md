@@ -1,12 +1,14 @@
-# BlurBox
+# 🌀 BlurBox
 
-# Introduction
+# 📝 Introduction
 
 A powerful and versatile Flutter widget library for applying beautiful blur effects to your UI elements.
 
 BlurBox works like a Container widget but with added blur capabilities, giving you all the styling options of Container plus sophisticated blur effects.
 
-## Features
+# [🚀 Live Demo](https://ox0.ir/blurbox/)
+
+## ✨ Features
 
 - **BlurBox**: The core widget for applying customizable blur effects
 - **AnimatedBlurBox**: Smooth animations for changing blur values
@@ -21,11 +23,11 @@ BlurBox works like a Container widget but with added blur capabilities, giving y
 - **OrganicPatternBlurBox**: Create flowing natural blur patterns
 - **KaleidoscopeBlurBox**: Create symmetrical kaleidoscope effects with blur
 
-# Installation
+# 📦 Installation
 
 ```yaml
 dependencies:
-  blurbox: ^0.0.5
+  blurbox: ^0.0.6
 ```
 or 
 ```bash
@@ -36,9 +38,23 @@ flutter pub add blurbox
 import 'package:blurbox/blurbox.dart';
 ```
 
-# Basic Usage
+# 🔧 Basic Usage
 
-## BlurBox
+# ⚠️ Performance Tips
+
+> [!IMPORTANT]
+> When using blur in scrollable views, you might encounter rendering issues. Use the following physics configuration to improve performance:
+>
+> ```dart
+> ListView(
+>   physics: const AlwaysScrollableScrollPhysics()
+>     .applyTo(const BouncingScrollPhysics()),
+>   children: [...]
+> )
+> ```
+
+
+## 🌫️ BlurBox
 
 The simplest way to add a blur effect to any widget:
 
@@ -52,7 +68,9 @@ BlurBox(
 )
 ```
 
-## Blur Background
+
+
+## 🖼️ Blur Background
 
 Create a full-screen blurred background:
 
@@ -70,7 +88,7 @@ BlurBox(
 ),
 ```
 
-## PresetBlurBox
+## 🧩 PresetBlurBox
 
 Use predefined blur styles for quick implementation:
 
@@ -88,7 +106,7 @@ PresetBlurBox(
 )
 ```
 
-## AnimatedBlurBox 
+## ⚡ AnimatedBlurBox 
 
 Smoothly animate between blur states:
 
@@ -105,7 +123,7 @@ AnimatedBlurBox(
 )
 ```
 
-## ThemedBlurBox
+## 🎨 ThemedBlurBox
 
 Automatically match your app theme:
 
@@ -119,9 +137,9 @@ ThemedBlurBox(
 )
 ```
 
-# Advanced Usage
+# 🚀 Advanced Usage
 
-## DirectionalBlurBox
+## 🔄 DirectionalBlurBox
 
 Create blur effects that flow in a specific direction:
 
@@ -136,7 +154,7 @@ DirectionalBlurBox(
 )
 ```
 
-## RadialBlurBox
+## ☀️ RadialBlurBox
 
 Create blur that radiates from a focal point:
 
@@ -154,7 +172,7 @@ RadialBlurBox(
 )
 ```
 
-## FollowingBlurBox
+## 👆 FollowingBlurBox
 
 Blur that follows user interaction:
 
@@ -174,7 +192,7 @@ FollowingBlurBox(
 )
 ```
 
-## ScrollAwareBlurBox
+## 📜 ScrollAwareBlurBox
 
 Adjust blur based on scroll position:
 
@@ -189,7 +207,7 @@ ScrollAwareBlurBox(
 )
 ```
 
-## PatternedBlurBox
+## 🎭 PatternedBlurBox
 
 Create blur with decorative pattern overlays:
 
@@ -207,7 +225,7 @@ PatternedBlurBox(
 )
 ```
 
-## Pattern BlurBoxes
+## 🔮 Pattern BlurBoxes
 
 Create beautiful patterns with blur effects:
 
@@ -250,7 +268,7 @@ KaleidoscopeBlurBox(
 )
 ```
 
-# Extension Methods
+# 🧰 Extension Methods
 
 Apply blur effects directly to any widget:
 
@@ -274,20 +292,8 @@ Container(
 )
 ```
 
-# Performance Tips
 
-> [!IMPORTANT]
-> When using blur in scrollable views, you might encounter rendering issues. Use the following physics configuration to improve performance:
->
-> ```dart
-> ListView(
->   physics: const AlwaysScrollableScrollPhysics()
->     .applyTo(const BouncingScrollPhysics()),
->   children: [...]
-> )
-> ```
-
-# Customization
+# 🛠️ Customization
 
 BlurBox offers extensive customization options similar to Container:
 
@@ -305,11 +311,11 @@ BlurBox offers extensive customization options similar to Container:
 - `gradient`: Applies a gradient background
 - `shape`: Defines the shape (default: BoxShape.rectangle)
 
-# Examples
+# 📚 Examples
 
 Check out the example app in the GitHub repository for complete demonstrations of all features.
 
-## License
+## 📄 License
 
 This package is available under the Apache License.
 

@@ -30,7 +30,7 @@ Offers predefined blur styles (`soft`, `heavy`, `subtleShadow`) for quick and ea
 * **blurry extension**
 Added extension methods for easier application of blur effects.
 
-## 0.0.5 - [9 April 2025].
+## 0.0.6 - [9 April 2025].
 
 ### 🚀 Major Feature Update
 
