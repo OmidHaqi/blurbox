@@ -1038,7 +1038,7 @@ class _KaleidoscopePatternPainter extends CustomPainter {
 
     final fillPaint =
         Paint()
-          ..color = color.withValues(alpha:  0.3)
+          ..color = color.withValues(alpha: 0.3)
           ..style = PaintingStyle.fill;
 
     final random = Random(42); // Fixed seed for consistency
