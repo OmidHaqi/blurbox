@@ -15,7 +15,8 @@ part of '../../blurbox.dart';
 /// - Designing decorative cards and panels with subtle textures
 /// - Building frosted glass interfaces with distinctive visual identity
 /// - Implementing themed containers that follow design language
-class PatternedBlurBox extends StatelessWidget implements BlurProperties, BoxProperties {
+class PatternedBlurBox extends StatelessWidget
+    implements BlurProperties, BoxProperties {
   /// The child widget to display
   final Widget child;
 
@@ -153,8 +154,10 @@ class PatternedBlurBox extends StatelessWidget implements BlurProperties, BoxPro
     this.gradient,
     this.image,
     this.shape,
-  }) : assert(patternAsset != null || patternUrl != null || (image != null),
-            'Either patternAsset, patternUrl or image must be provided');
+  }) : assert(
+         patternAsset != null || patternUrl != null || (image != null),
+         'Either patternAsset, patternUrl or image must be provided',
+       );
 
   @override
   Widget build(BuildContext context) {
@@ -188,7 +191,7 @@ class PatternedBlurBox extends StatelessWidget implements BlurProperties, BoxPro
               shape: shape,
               child: const SizedBox.expand(),
             ),
-            
+
             // Pattern layer
             if (patternAsset != null || patternUrl != null)
               Positioned.fill(
@@ -200,13 +203,9 @@ class PatternedBlurBox extends StatelessWidget implements BlurProperties, BoxPro
                   ),
                 ),
               ),
-            
+
             // Content with padding
-            Container(
-              padding: padding,
-              alignment: alignment,
-              child: child,
-            ),
+            Container(padding: padding, alignment: alignment, child: child),
           ],
         ),
       ),
@@ -216,7 +215,7 @@ class PatternedBlurBox extends StatelessWidget implements BlurProperties, BoxPro
   Widget _buildPatternLayer() {
     // Create the base pattern widget
     Widget patternWidget;
-    
+
     // PNG/Image pattern
     if (patternAsset != null) {
       patternWidget = Image.asset(
@@ -235,7 +234,7 @@ class PatternedBlurBox extends StatelessWidget implements BlurProperties, BoxPro
         scale: 1 / patternScale,
       );
     }
-    
+
     // Apply scaling if needed
     if (patternScale != 1.0) {
       patternWidget = Transform.scale(
@@ -243,7 +242,7 @@ class PatternedBlurBox extends StatelessWidget implements BlurProperties, BoxPro
         child: patternWidget,
       );
     }
-    
+
     // Create repeating pattern if required
     if (repeatPattern) {
       return LayoutBuilder(
@@ -254,14 +253,16 @@ class PatternedBlurBox extends StatelessWidget implements BlurProperties, BoxPro
               height: constraints.maxHeight,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: patternAsset != null
-                      ? AssetImage(patternAsset!)
-                      : NetworkImage(patternUrl!) as ImageProvider,
+                  image:
+                      patternAsset != null
+                          ? AssetImage(patternAsset!)
+                          : NetworkImage(patternUrl!) as ImageProvider,
                   repeat: ImageRepeat.repeat,
                   scale: 1 / patternScale,
-                  colorFilter: patternColor != null
-                      ? ColorFilter.mode(patternColor!, patternBlendMode)
-                      : null,
+                  colorFilter:
+                      patternColor != null
+                          ? ColorFilter.mode(patternColor!, patternBlendMode)
+                          : null,
                   alignment: patternAlignment,
                 ),
               ),

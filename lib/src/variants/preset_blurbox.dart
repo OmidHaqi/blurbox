@@ -15,22 +15,22 @@ enum BlurPreset {
 
   /// A frosted glass effect with white tint (blur: 7.0)
   frostedGlass,
-  
+
   /// A dark tinted blur effect for nighttime UI (blur: 6.0)
   darkMist,
-  
+
   /// An elegant, minimal blur for modern designs (blur: 3.0)
   subtle,
-  
+
   /// A colorful gradient blur for vibrant interfaces (blur: 8.0)
   vibrant,
-  
+
   /// A deep blur with strong shadow for elevated UI elements (blur: 15.0)
   floating,
-  
+
   /// A light blur with light blue tint for iOS-style interfaces (blur: 10.0)
   iosStyle,
-  
+
   /// A material design inspired blur with depth (blur: 8.0)
   materialDesign,
 }
@@ -69,7 +69,11 @@ class BlurPresetFactory {
           'blur': 7.0,
           'color': overrideColor ?? const Color(0x40FFFFFF),
           'boxShadow': [
-            const BoxShadow(color: Color(0x20000000), blurRadius: 6.0, spreadRadius: 0.5),
+            const BoxShadow(
+              color: Color(0x20000000),
+              blurRadius: 6.0,
+              spreadRadius: 0.5,
+            ),
           ],
           'border': Border.all(color: const Color(0x30FFFFFF), width: 1.5),
         };
@@ -279,7 +283,7 @@ class PresetBlurBox extends StatelessWidget implements BoxProperties {
   @override
   Widget build(BuildContext context) {
     final presetSettings = BlurPresetFactory.getPresetSettings(preset, _color);
-    
+
     // Extract additional properties from preset settings that weren't in the original
     final Border? presetBorder = presetSettings['border'] as Border?;
     final Gradient? presetGradient = presetSettings['gradient'] as Gradient?;

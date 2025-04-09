@@ -81,7 +81,7 @@ abstract class AnimatedBlurProperties extends BlurProperties {
   ///
   /// The animation transitions from this value to the [blur] value.
   double get begin;
-  
+
   /// Animation curve that defines the rate of change.
   ///
   /// Common values:
@@ -90,12 +90,12 @@ abstract class AnimatedBlurProperties extends BlurProperties {
   /// - [Curves.easeOut]: Starts quickly and decelerates
   /// - [Curves.easeInOut]: Combination of easeIn and easeOut
   Curve get curve;
-  
+
   /// Duration of the blur animation.
   ///
   /// Typical values range from 200-500 milliseconds for a smooth effect.
   Duration get duration;
-  
+
   /// Callback that triggers when the animation completes.
   ///
   /// Useful for chaining animations or performing actions after the transition.

@@ -43,7 +43,9 @@ extension BlurBoxExtension on Widget {
     BoxDecoration? foregroundDecoration,
     Matrix4? transform,
     AlignmentGeometry? transformAlignment,
-    BorderRadiusGeometry borderRadius = const BorderRadius.all(Radius.circular(0)),
+    BorderRadiusGeometry borderRadius = const BorderRadius.all(
+      Radius.circular(0),
+    ),
     Border? border,
     BlendMode? backgroundBlendMode,
     List<BoxShadow>? boxShadow,
@@ -77,7 +79,7 @@ extension BlurBoxExtension on Widget {
       child: this,
     );
   }
-  
+
   /// Creates an animated blur effect on any widget with a fluent syntax.
   ///
   /// This extension makes it easy to add animated blur transitions to
@@ -126,7 +128,9 @@ extension BlurBoxExtension on Widget {
     BoxDecoration? foregroundDecoration,
     Matrix4? transform,
     AlignmentGeometry? transformAlignment,
-    BorderRadiusGeometry borderRadius = const BorderRadius.all(Radius.circular(0)),
+    BorderRadiusGeometry borderRadius = const BorderRadius.all(
+      Radius.circular(0),
+    ),
     Border? border,
     BlendMode? backgroundBlendMode,
     List<BoxShadow>? boxShadow,

@@ -19,36 +19,36 @@ part of '../../blurbox.dart';
 class ScrollAwareBlurBox extends StatefulWidget {
   /// The child widget to display
   final Widget child;
-  
+
   /// The ScrollController to listen to for scroll events
   final ScrollController scrollController;
-  
+
   /// Minimum blur value when scroll position is at 0
   final double minBlur;
-  
+
   /// Maximum blur value at maximum scroll threshold
   final double maxBlur;
-  
+
   /// Maximum scroll offset to reach maximum blur
   final double scrollThreshold;
-  
+
   /// Background color of the blur effect
   final Color color;
-  
+
   /// Border radius of the blur container
   final BorderRadius borderRadius;
-  
+
   /// Whether blur increases (true) or decreases (false) with scrolling
   final bool blurOnScroll;
-  
+
   /// Creates a blur effect that changes intensity based on scroll position.
   ///
   /// ## Example
-  /// 
+  ///
   /// ```dart
   /// // In a StatefulWidget
   /// final ScrollController _scrollController = ScrollController();
-  /// 
+  ///
   /// @override
   /// Widget build(BuildContext context) {
   ///   return Stack(
@@ -113,12 +113,18 @@ class _ScrollAwareBlurBoxState extends State<ScrollAwareBlurBox> {
 
   void _updateBlur() {
     final scrollPosition = widget.scrollController.offset;
-    final scrollPercentage = (scrollPosition / widget.scrollThreshold).clamp(0.0, 1.0);
-    
-    final newBlur = widget.blurOnScroll
-        ? widget.minBlur + scrollPercentage * (widget.maxBlur - widget.minBlur)
-        : widget.maxBlur - scrollPercentage * (widget.maxBlur - widget.minBlur);
-    
+    final scrollPercentage = (scrollPosition / widget.scrollThreshold).clamp(
+      0.0,
+      1.0,
+    );
+
+    final newBlur =
+        widget.blurOnScroll
+            ? widget.minBlur +
+                scrollPercentage * (widget.maxBlur - widget.minBlur)
+            : widget.maxBlur -
+                scrollPercentage * (widget.maxBlur - widget.minBlur);
+
     if (newBlur != _currentBlur) {
       setState(() {
         _currentBlur = newBlur;
@@ -132,7 +138,9 @@ class _ScrollAwareBlurBoxState extends State<ScrollAwareBlurBox> {
       blur: _currentBlur,
       color: widget.color,
       borderRadius: widget.borderRadius,
-      padding: EdgeInsets.zero, // Usually no padding is needed for scroll-aware effects
+      padding:
+          EdgeInsets
+              .zero, // Usually no padding is needed for scroll-aware effects
       child: widget.child,
     );
   }

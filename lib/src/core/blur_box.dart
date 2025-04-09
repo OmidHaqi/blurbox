@@ -37,7 +37,6 @@ class BlurBox extends StatelessWidget implements BlurProperties, BoxProperties {
   @override
   final BoxDecoration? foregroundDecoration;
 
-
   @override
   final Matrix4? transform;
 

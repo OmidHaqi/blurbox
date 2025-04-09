@@ -14,7 +14,7 @@ abstract class BoxProperties {
 
   /// The width of the box.
   abstract final double? width;
-  
+
   /// The material design elevation of the box.
   abstract final double elevation;
 

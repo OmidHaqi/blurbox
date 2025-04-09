@@ -623,16 +623,16 @@ class _OrganicPatternPainter extends CustomPainter {
 enum KaleidoscopePatternType {
   /// Basic lines and circles pattern
   basic,
-  
+
   /// Pattern with adjacent rectangles
   rectangles,
-  
+
   /// Pattern with triangular shapes
   triangles,
-  
+
   /// Pattern with mixed geometric shapes
   mixed,
-  
+
   /// Pattern with concentric circles
   concentric,
 }
@@ -667,7 +667,7 @@ class KaleidoscopeBlurBox extends StatelessWidget implements BoxProperties {
 
   /// Duration of one complete rotation when animated
   final Duration? rotationDuration;
-  
+
   /// Type of pattern to display in the kaleidoscope
   final KaleidoscopePatternType patternType;
 
@@ -700,7 +700,6 @@ class KaleidoscopeBlurBox extends StatelessWidget implements BoxProperties {
 
   @override
   final BoxDecoration? foregroundDecoration;
-
 
   @override
   final Matrix4? transform;
@@ -1031,14 +1030,16 @@ class _KaleidoscopePatternPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.5;
-    
-    final fillPaint = Paint()
-      ..color = color.withOpacity(0.3)
-      ..style = PaintingStyle.fill;
+    final paint =
+        Paint()
+          ..color = color
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.5;
+
+    final fillPaint =
+        Paint()
+          ..color = color.withOpacity(0.3)
+          ..style = PaintingStyle.fill;
 
     final random = Random(42); // Fixed seed for consistency
 
@@ -1046,26 +1047,31 @@ class _KaleidoscopePatternPainter extends CustomPainter {
       case KaleidoscopePatternType.basic:
         _paintBasicPattern(canvas, size, paint, random);
         break;
-      
+
       case KaleidoscopePatternType.rectangles:
         _paintRectanglesPattern(canvas, size, paint, fillPaint, random);
         break;
-      
+
       case KaleidoscopePatternType.triangles:
         _paintTrianglesPattern(canvas, size, paint, fillPaint, random);
         break;
-      
+
       case KaleidoscopePatternType.mixed:
         _paintMixedPattern(canvas, size, paint, fillPaint, random);
         break;
-      
+
       case KaleidoscopePatternType.concentric:
         _paintConcentricPattern(canvas, size, paint, random);
         break;
     }
   }
 
-  void _paintBasicPattern(Canvas canvas, Size size, Paint paint, Random random) {
+  void _paintBasicPattern(
+    Canvas canvas,
+    Size size,
+    Paint paint,
+    Random random,
+  ) {
     // Draw some decorative lines
     for (int i = 0; i < 10; i++) {
       final startX = random.nextDouble() * size.width;
@@ -1086,7 +1092,13 @@ class _KaleidoscopePatternPainter extends CustomPainter {
     }
   }
 
-  void _paintRectanglesPattern(Canvas canvas, Size size, Paint strokePaint, Paint fillPaint, Random random) {
+  void _paintRectanglesPattern(
+    Canvas canvas,
+    Size size,
+    Paint strokePaint,
+    Paint fillPaint,
+    Random random,
+  ) {
     // Draw adjacent rectangles with varied sizes
     final gridSize = 5;
     final cellWidth = size.width / gridSize;
@@ -1095,17 +1107,15 @@ class _KaleidoscopePatternPainter extends CustomPainter {
     for (int row = 0; row < gridSize; row++) {
       for (int col = 0; col < gridSize; col++) {
         if (random.nextBool()) {
-          final rectSize = min(cellWidth, cellHeight) * (0.6 + random.nextDouble() * 0.4);
-          final left = col * cellWidth + (cellWidth - rectSize) * random.nextDouble();
-          final top = row * cellHeight + (cellHeight - rectSize) * random.nextDouble();
-          
-          final rect = Rect.fromLTWH(
-            left,
-            top,
-            rectSize,
-            rectSize,
-          );
-          
+          final rectSize =
+              min(cellWidth, cellHeight) * (0.6 + random.nextDouble() * 0.4);
+          final left =
+              col * cellWidth + (cellWidth - rectSize) * random.nextDouble();
+          final top =
+              row * cellHeight + (cellHeight - rectSize) * random.nextDouble();
+
+          final rect = Rect.fromLTWH(left, top, rectSize, rectSize);
+
           // Draw filled rectangle with stroke
           canvas.drawRect(rect, fillPaint);
           canvas.drawRect(rect, strokePaint);
@@ -1114,92 +1124,126 @@ class _KaleidoscopePatternPainter extends CustomPainter {
     }
   }
 
-  void _paintTrianglesPattern(Canvas canvas, Size size, Paint strokePaint, Paint fillPaint, Random random) {
+  void _paintTrianglesPattern(
+    Canvas canvas,
+    Size size,
+    Paint strokePaint,
+    Paint fillPaint,
+    Random random,
+  ) {
     // Draw triangular pattern
     for (int i = 0; i < 8; i++) {
       final x = random.nextDouble() * size.width;
       final y = random.nextDouble() * size.height;
       final triangleSize = 10.0 + random.nextDouble() * 40.0;
-      
+
       final path = Path();
       path.moveTo(x, y - triangleSize);
       path.lineTo(x + triangleSize, y + triangleSize);
       path.lineTo(x - triangleSize, y + triangleSize);
       path.close();
-      
+
       // Apply random rotation
       final rotationAngle = random.nextDouble() * pi * 2;
       final matrix = Matrix4.rotationZ(rotationAngle).storage;
-      final rotatedPath = path.transform(Float64List.fromList([
-        matrix[0], matrix[1], 0, 0,
-        matrix[4], matrix[5], 0, 0,
-        0, 0, 1, 0,
-        x, y, 0, 1,
-      ]));
-      
+      final rotatedPath = path.transform(
+        Float64List.fromList([
+          matrix[0],
+          matrix[1],
+          0,
+          0,
+          matrix[4],
+          matrix[5],
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          x,
+          y,
+          0,
+          1,
+        ]),
+      );
+
       canvas.drawPath(rotatedPath, fillPaint);
       canvas.drawPath(rotatedPath, strokePaint);
     }
   }
 
-  void _paintMixedPattern(Canvas canvas, Size size, Paint strokePaint, Paint fillPaint, Random random) {
+  void _paintMixedPattern(
+    Canvas canvas,
+    Size size,
+    Paint strokePaint,
+    Paint fillPaint,
+    Random random,
+  ) {
     // Draw a mix of shapes
-    
+
     // Some rectangles
     for (int i = 0; i < 5; i++) {
       final x = random.nextDouble() * size.width;
       final y = random.nextDouble() * size.height;
       final rectSize = 10.0 + random.nextDouble() * 30.0;
-      
+
       final rect = Rect.fromCenter(
         center: Offset(x, y),
         width: rectSize,
         height: rectSize * (0.5 + random.nextDouble() * 1.0),
       );
-      
+
       canvas.drawRect(rect, fillPaint);
       canvas.drawRect(rect, strokePaint);
     }
-    
+
     // Some circles
     for (int i = 0; i < 3; i++) {
       final x = random.nextDouble() * size.width;
       final y = random.nextDouble() * size.height;
       final radius = 5.0 + random.nextDouble() * 15.0;
-      
+
       canvas.drawCircle(Offset(x, y), radius, fillPaint);
       canvas.drawCircle(Offset(x, y), radius, strokePaint);
     }
-    
+
     // Some lines
     for (int i = 0; i < 8; i++) {
       final startX = random.nextDouble() * size.width;
       final startY = random.nextDouble() * size.height;
       final endX = startX + (-40.0 + random.nextDouble() * 80.0);
       final endY = startY + (-40.0 + random.nextDouble() * 80.0);
-      
+
       canvas.drawLine(Offset(startX, startY), Offset(endX, endY), strokePaint);
     }
   }
 
-  void _paintConcentricPattern(Canvas canvas, Size size, Paint paint, Random random) {
+  void _paintConcentricPattern(
+    Canvas canvas,
+    Size size,
+    Paint paint,
+    Random random,
+  ) {
     // Draw concentric circles or ellipses
     final centerX = size.width * (0.3 + random.nextDouble() * 0.4);
     final centerY = size.height * (0.3 + random.nextDouble() * 0.4);
-    
+
     for (int i = 1; i <= 10; i++) {
       final radius = size.width * i * 0.08;
       canvas.drawCircle(Offset(centerX, centerY), radius, paint);
     }
-    
+
     // Add some crossing lines
     for (int i = 0; i < 5; i++) {
       final angle = random.nextDouble() * pi * 2;
       final length = size.width * 0.8;
-      
+
       canvas.drawLine(
         Offset(centerX + cos(angle) * length, centerY + sin(angle) * length),
-        Offset(centerX + cos(angle + pi) * length, centerY + sin(angle + pi) * length),
+        Offset(
+          centerX + cos(angle + pi) * length,
+          centerY + sin(angle + pi) * length,
+        ),
         paint,
       );
     }

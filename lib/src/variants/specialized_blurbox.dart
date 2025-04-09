@@ -87,7 +87,9 @@ class _FollowingBlurBoxState extends State<FollowingBlurBox> {
               AnimatedPositioned(
                 left: pointerPosition!.dx - widget.radius,
                 top: pointerPosition!.dy - widget.radius,
-                duration: Duration(milliseconds: (300 / widget.followSpeed).round()),
+                duration: Duration(
+                  milliseconds: (300 / widget.followSpeed).round(),
+                ),
                 curve: Curves.easeOutCubic,
                 child: ClipOval(
                   child: BlurBox(
@@ -123,7 +125,8 @@ class _FollowingBlurBoxState extends State<FollowingBlurBox> {
 /// - Directing user attention to important areas
 /// - Creating depth-of-field effects in photo displays
 /// - Enhancing transition animations with motion blur
-class DirectionalBlurBox extends StatelessWidget implements BlurProperties, BoxProperties {
+class DirectionalBlurBox extends StatelessWidget
+    implements BlurProperties, BoxProperties {
   /// The child widget to display
   final Widget child;
 
@@ -141,7 +144,7 @@ class DirectionalBlurBox extends StatelessWidget implements BlurProperties, BoxP
 
   /// The direction of the blur effect in degrees (0 = right, 90 = down)
   final double angle;
-  
+
   @override
   final double elevation;
 
@@ -162,7 +165,6 @@ class DirectionalBlurBox extends StatelessWidget implements BlurProperties, BoxP
 
   @override
   final BoxDecoration? foregroundDecoration;
-
 
   @override
   final Matrix4? transform;
@@ -304,7 +306,7 @@ class RadialBlurBox extends StatelessWidget implements BoxProperties {
   final Alignment focalPoint;
   final double radius;
   final double falloff; // New: Controls blur gradient falloff
-  final int quality;    // New: Controls number of blur layers
+  final int quality; // New: Controls number of blur layers
 
   @override
   final Color color;
@@ -352,8 +354,8 @@ class RadialBlurBox extends StatelessWidget implements BoxProperties {
     this.maxBlur = 10.0,
     this.focalPoint = Alignment.center,
     this.radius = 100.0,
-    this.falloff = 2.0,     // Added falloff parameter
-    this.quality = 8,       // Added quality parameter
+    this.falloff = 2.0, // Added falloff parameter
+    this.quality = 8, // Added quality parameter
     this.color = Colors.transparent,
     this.height,
     this.width,
@@ -374,7 +376,10 @@ class RadialBlurBox extends StatelessWidget implements BoxProperties {
     this.image,
     this.shape,
   }) : assert(quality > 0 && quality <= 20, 'Quality must be between 1 and 20'),
-       assert(falloff >= 0.1 && falloff <= 10.0, 'Falloff must be between 0.1 and 10.0');
+       assert(
+         falloff >= 0.1 && falloff <= 10.0,
+         'Falloff must be between 0.1 and 10.0',
+       );
 
   @override
   Widget build(BuildContext context) {
@@ -445,20 +450,18 @@ class RadialBlurPainter extends CustomPainter {
       size.height * (focalPoint.y * 0.5 + 0.5),
     );
 
-    final shaderPaint = Paint()
-      ..shader = ui.Gradient.radial(
-        center,
-        radius,
-        [
-          color.withValues( alpha:color.a),
-          color.withValues( alpha:0.0),
-        ],
-        [0.0, 1.0],
-        TileMode.clamp,
-        null,
-        null,
-        falloff,
-      );
+    final shaderPaint =
+        Paint()
+          ..shader = ui.Gradient.radial(
+            center,
+            radius,
+            [color.withValues(alpha: color.a), color.withValues(alpha: 0.0)],
+            [0.0, 1.0],
+            TileMode.clamp,
+            null,
+            null,
+            falloff,
+          );
 
     // Draw layered blur effect
     for (int i = quality; i > 0; i--) {
@@ -466,13 +469,14 @@ class RadialBlurPainter extends CustomPainter {
       final currentBlur = maxBlur * t * t; // Quadratic falloff
       final currentRadius = radius * t;
 
-      final blurPaint = Paint()
-        ..imageFilter = ui.ImageFilter.blur(
-          sigmaX: currentBlur,
-          sigmaY: currentBlur,
-          tileMode: TileMode.decal,
-        )
-        ..blendMode = BlendMode.srcOver;
+      final blurPaint =
+          Paint()
+            ..imageFilter = ui.ImageFilter.blur(
+              sigmaX: currentBlur,
+              sigmaY: currentBlur,
+              tileMode: TileMode.decal,
+            )
+            ..blendMode = BlendMode.srcOver;
 
       canvas.saveLayer(null, blurPaint);
       canvas.drawCircle(center, currentRadius, shaderPaint);
@@ -490,7 +494,6 @@ class RadialBlurPainter extends CustomPainter {
         quality != oldDelegate.quality;
   }
 }
-
 
 /// A blur box with a gradient blur effect.
 ///
@@ -510,25 +513,25 @@ class RadialBlurPainter extends CustomPainter {
 class GradientBlurBox extends StatelessWidget {
   /// The child widget to display
   final Widget child;
-  
+
   /// Minimum blur intensity
   final double minBlur;
-  
+
   /// Maximum blur intensity
   final double maxBlur;
-  
+
   /// Direction of the blur gradient
   final AlignmentGeometry begin;
-  
+
   /// End direction of the blur gradient
   final AlignmentGeometry end;
-  
+
   /// Background color
   final Color color;
-  
+
   /// Border radius of the container
   final BorderRadius borderRadius;
-  
+
   /// The shape of the container
   final BoxShape shape;
 
@@ -575,7 +578,7 @@ class GradientBlurBox extends StatelessWidget {
           padding: EdgeInsets.zero,
           child: const SizedBox.expand(),
         ),
-        
+
         // Second layer - additional blur with gradient mask
         ShaderMask(
           shaderCallback: (Rect bounds) {
@@ -594,14 +597,10 @@ class GradientBlurBox extends StatelessWidget {
             child: const SizedBox.expand(),
           ),
         ),
-        
+
         // Content container
-        ClipRRect(
-          borderRadius: borderRadius,
-          child: child,
-        ),
+        ClipRRect(borderRadius: borderRadius, child: child),
       ],
     );
   }
 }
-

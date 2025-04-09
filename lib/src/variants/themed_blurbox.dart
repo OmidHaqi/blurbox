@@ -31,7 +31,6 @@ class ThemedBlurBox extends StatelessWidget
   @override
   final BoxDecoration? foregroundDecoration;
 
-
   @override
   final Matrix4? transform;
 
