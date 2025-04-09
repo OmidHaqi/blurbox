@@ -4,7 +4,7 @@ version: 0.0.5
 homepage: https://github.com/OmidHaqi/blurbox
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=2.17.0 <4.0.0'  # Even more permissive SDK constraint
   flutter: ">=1.17.0"
 
 dependencies:
