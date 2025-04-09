@@ -1,6 +1,6 @@
 name: blurbox
 description: "A Flutter package that applies a blur effect to its child widget."
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/OmidHaqi/blurbox
 
 environment:
@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_svg: ^2.0.17
 
 dev_dependencies:
   flutter_test:
